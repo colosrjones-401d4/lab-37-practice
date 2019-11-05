@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-import PlayerForm from './player-form.js';
+import PlayerFormRedux from './player-redux-form';
 
 import * as actions from '../store/players.store.js';
 
@@ -25,7 +25,7 @@ class Player extends React.Component {
     return (
       <div>
         <h3>Edit Player {this.props.id}</h3>
-        <PlayerForm
+        <PlayerFormRedux
           initialValues={this.props.players[this.props.id]}
           onSubmit={this.handleSubmit}
         />
