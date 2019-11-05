@@ -2,7 +2,7 @@ import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer as formReducer } from 'redux-form';
 
-import playersReducer from './players.store.js';
+import playersReducer from './players-reducers.js';
 
 let reducers = combineReducers({
   players: playersReducer,
