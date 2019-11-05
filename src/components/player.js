@@ -1,50 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-
-import PlayerFormRedux from './player-redux-form';
-
-import * as actions from '../store/players.store.js';
-
-console.log(actions);
-
-class Player extends React.Component {
-
-  handleSubmit = (formData) => {
-    if (parseInt(this.props.id) >= 0) {
-      this.props.handlePut({ id: this.props.id, record: formData });
-    }
-    else {
-      this.props.handlePost(formData);
-    }
-  }
-
-  render() {
-
-    console.log(this.props.players[this.props.id]);
-    return (
-      <div>
-        <h3>Edit Player {this.props.id}</h3>
-        <PlayerFormRedux
-          initialValues={this.props.players[this.props.id]}
-          onSubmit={this.handleSubmit}
-        />
-      </div>
-    );
-  }
-}
-
-
-const mapStateToProps = state => ({
-  players: state.players,
-});
-
-const mapDispatchToProps = (dispatch, getState) => ({
-  handlePost: payload => dispatch(actions.post(payload)),
-  handlePut: payload => dispatch(actions.put(payload)),
-});
+const PlayersList = (props) => (
+  <table>
+    <tbody>
+    {props.players.map((player, idx) => (
+      <tr key={idx}>
+        <th>{player.name}</th>
+        <td><Link to={`/players/${idx}/edit-schema`}>Edit</Link></td>
+        <td><Link to={`/players/${idx}/edit-redux`}>Edit (Redux Form)</Link></td>
+      </tr>
+    ))}
+    </tbody>
+  </table>
+);
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Player);
+  state => ({
+    players: state.players,
+  })
+)(PlayersList);
