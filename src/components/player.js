@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+
 import PlayerForm from './player-form.js';
+
 import * as actions from '../store/players.store.js';
 
 console.log(actions);

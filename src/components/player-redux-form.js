@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
+import { reduxForm } from 'redux-form';
 
 let PlayerForm = props => {
 
@@ -37,4 +38,6 @@ let PlayerForm = props => {
   );
 };
 
-export default PlayerForm;
+export default reduxForm({
+  form: 'player',
+})(PlayerForm);
